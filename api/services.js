@@ -1,18 +1,4 @@
-/**
- * Copyright 2015 IBM Corp. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 'use strict';
 
@@ -26,7 +12,7 @@ var classifierFile = __dirname + '/../training/classifier_id';
 // This application requires 3 ids to work properly
 
 // 1. TMDB API key, explained in https://www.themoviedb.org/documentation/api
-var TMDB_API_KEY = process.env.TMDB_API_KEY || '';
+var TMDB_API_KEY = process.env.TMDB_API_KEY || '3554304a353e6673032d413b5f76929c';
 
 // 2. dialog id - see training/setup.js
 var DIALOG_ID = 'TYPE DIALOG ID HERE';

@@ -176,21 +176,7 @@
             return self.selectedMovie;
         };
 
-        /**
-         * Adds or removes a movie from the list of favorites. The current array of favorite movies is
-         * interrogated for the provided movie (the array is check for a movie with the same name and id).
-         * If the movie is not found and the 'add' flag is true the movie is added to the array.
-         * If the movie is found and the 'add' flag is false the movie is removed from the list.
-         * If the movie is found and the 'add' flag is true or the movie is not found and the 'add' flag
-         * is false then no action is taken (as the array is in the correct state).
-         *
-         * @public
-         * @param movie - a object representing a movie which is to be added to the list of favorites.
-         *                The object must have a movie_id and movie_name property.
-         * @param add - a flag which determines whether the provided movie is to be added or removed to/from
-         *              the list of favorites. A value of true signaling the movie is to be added, false to
-         *              remove the movie from the array.
-         */
+        
         self.setAsFavorite = function (movie, add) {
             var result = _.find(self.selectedMovies, { 'movie_id': movie.movie_id, 'movie_name': movie.movie_name });
             if (result) {
@@ -260,6 +246,9 @@
             dialogService.query(self.question, true).then(function (response) {
                 $('#question').removeAttr('disabled');
                 $('#question').val('');
+
+
+
                 if ($.isArray(response)) {
                     response = response[response.length - 1];
                     //If we are displaying movies on a mobile device (less than 750 tall) we do

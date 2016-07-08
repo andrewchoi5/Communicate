@@ -7,6 +7,7 @@ applications:
   host: con-achoi
   disk_quota: 1024M
   services:
-  - con-achoi-natural_language_classifier
-  - con-achoi-dialog
+  - classifier-service5
+  - dialog-service5
+  # - text-to-speech-service4
   command: npm start

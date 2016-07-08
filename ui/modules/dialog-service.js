@@ -1,30 +1,7 @@
-/* Copyright IBM Corp. 2015
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 (function () {
     'use strict';
-
     angular.module('dialog.service', [])
-
-    /**
-     * @name dialogService
-     * @module dialog/service
-     * @description
-     *
-     * Implements the dialogService interface using the Watson Theaters App API to interface with the
-     * Watson Dialog Service (WDS) and themoviedb.org's movie API.
-     */
+   
     .service('dialogService', function (_, $http, $q, dialogParser) {
         var clientId;
         var conversationId;
@@ -49,7 +26,6 @@
         var getLatestResponse = function () {
             return conversation.length > 0 ? conversation[conversation.length - 1] : undefined;
         };
-
         /**
          * Retrieves a clientId for the API connection.
          *
@@ -103,14 +79,6 @@
             }
         };
 
-        /**
-         * Calls the WDS getResponse API. Given a question/input from the
-         * user a call is made to the API. The response
-         * is parsed appropriately. e.g. movies parsed from payload etc
-         *
-         * @private
-         * @return {object} A JSON object representing a segment in the conversation.
-         */
          var getResponse = function (question) {
              return $http.post('/api/conversation', {
                client_id: clientId,
@@ -120,6 +88,49 @@
                  var watsonResponse = response.data.response.join(' ');
                  var movies = null, htmlLinks = null, transformedPayload = null;
                  var segment = null;
+                 console.log("test 0 passed");
+                     // if(dialog.conversation.response == "I would be thrilled to assist you. Are you here for inquiries regarding Loans or Accounts?") {
+                     if(watsonResponse == "I would be thrilled to assist you. Are you here for inquiries regarding Loans or Accounts?") {
+                              console.log("test 1 passed");
+                                  // username: 'bf609d21-bd2e-43ed-82d3-4134575a024f',
+                                  // password: 'DX8xfaRqGNcr',
+                     //            function synthesizeRequest(options, audio) {
+                     //                var sessionPermissions = JSON.parse(localStorage.getItem('sessionPermissions')) ? 0 : 1;
+                     //                var downloadURL = '/api/synthesize' +
+                     //                    '?voice=' + options.voice +
+                     //                    '&text=' + encodeURIComponent(options.text) +
+                     //                    '&X-WDC-PL-OPT-OUT=' +  sessionPermissions;
+
+                     //                if (options.download) {
+                     //                    downloadURL += '&download=true';
+                     //                    window.location.href = downloadURL;
+                     //                    return true;
+                     //                }
+                     //                audio.pause();
+                     //                try {
+                     //                    audio.currentTime = 0;
+                     //                } catch(ex) {
+                     //                    // ignore. Firefox just freaks out here for no apparent reason.
+                     //                }
+                     //                audio.src = downloadURL;
+                     //                talking = true;
+                     //                $('.audio').on("ended", function(){
+                     //                    talking = false;
+                     //                });
+                     //                audio.play();
+                     //                return true;
+                     //            };
+                     //            // var res = response[response.length - 1].responses;
+                     //            var res = "hello world from IBM";
+                     //            var voice = 'en-US_AllisonVoice';
+                     //            var utteranceOptions = {
+                     //                text: res,
+                     //                voice: voice,
+                     //                sessionPermissions: JSON.parse(localStorage.getItem('sessionPermissions')) ? 0 : 1
+                     //            };
+                     //            var audio = $('.audio').get(0);
+                     //            synthesizeRequest(utteranceOptions, audio);
+                     } 
                  if (watsonResponse) {
                      if (!dialogParser.isMctInPayload(watsonResponse)) {
                          //For 'mct' tags we have to maintain the formatting.

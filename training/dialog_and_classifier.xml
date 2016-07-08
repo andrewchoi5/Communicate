@@ -2,13 +2,13 @@
 <dialog xsi:noNamespaceSchemaLocation="WatsonDialogDocument_1.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <flow>
         <folder label="Main">
-            <output>
+            <output >
                 <prompt selectionType="RANDOM">
-                    <item>Hello there! Welcome to the IBM Watson branch. Say "Start" to begin!</item>
+                    <item>Hello there! Welcome to the IBM Watson branch. Say "Start" at any point of the conversation to start over. Let's begin!</item>
                 </prompt>
                 <goto ref="getUserInput_2449614"/>
             </output>
-            <output>
+            <output id="output_commence">
                 <prompt selectionType="SEQUENTIAL">
                     <item></item>
                 </prompt>
@@ -23,9 +23,9 @@
                     </default>
                 </getUserInput>
             </output>
-        </folder>        
+        </folder>
         <folder label="Library">
-            <folder label="Live Content" id="folder_2449611">               
+            <folder label="Live Content" id="folder_2449611">
                 <input>
                     <grammar>
                         <item>* great</item>
@@ -36,231 +36,945 @@
                         <item>* start</item>
                         <item>let's go</item>
                         <item>*let's go</item>
+                        <item>start over</item>
+                        <item>go</item>
+                        <item>okay</item>
+                        <item>ok</item>
+                        <item>alright</item>
+
                     </grammar>
                     <output>
                         <prompt selectionType="RANDOM">
-                            <item>I am very glad to hear that. I would be happy to assist you. Would you like to learn about Credit Card or Debit Card?</item>
+                            <item>I would be thrilled to assist you. Are you here for inquiries regarding Loans or Accounts?</item>
                         </prompt>
+                        <getUserInput> <!-- for Loans vs Accounts-->
 
-                        <getUserInput>
                             <input>
                                 <grammar>
-                                    <item>I need a credit card</item>
-                                    <item>* credit card</item>
-                                    <item>credit card</item>
-                                    <item>* CC</item>
-                                    <item>* cc plz</item>
-                                    <item>Next.</item>
+                                    <item>loans</item>
+                                    <item>* loans</item>
+                                    <item>loan</item>
+                                    <item>* loan</item>
                                 </grammar>
                                 <output>
                                     <prompt selectionType="RANDOM">
-                                        <item>Awesome, now let’s figure out which credit card is best for you. We have standard credit cards which don’t require a security deposit, a reward program credit card that allows you to earn incentives, and a frequent flier credit card which allows you to earn airline mile credits when you make a purchase. Would you like Elite Platinum or Blue Premium?</item>
+                                        <item>Loan it is! Is your concern regarding Credit Card, Mortage, or Loan?</item>
                                     </prompt>
                                     <getUserInput>
                                         <input>
                                             <grammar>
-                                                <item>Actually I know what I want. I want the Blue Premium</item>
-                                                <item>I want the Blue Premium</item>
-                                                <item>Blue Premium</item>
-                                                <item>* Blue Premium</item>
-                                                <item>No need. I already know what I want. I want the Blue Premium.</item>
+                                                <item>I need a loan</item>
+                                                <item>* loan </item>
+                                                <item>* loans</item>
+                                                <item>loan</item>
+                                                <item>loans</item>
                                             </grammar>
                                             <output>
                                                 <prompt selectionType="RANDOM">
-                                                    <item>Blue Preimum is still under construction. Please come back later!</item>
+                                                    <item>Would you like to Make a new loan?</item>
                                                 </prompt>
                                             </output>
                                         </input>
                                         <input>
                                             <grammar>
-                                                <item>Actually I know what I want. I want the Elite Platinum.</item>
-                                                <item>I want the Elite Platinum</item>
-                                                <item>Elite Platinum</item>
-                                                <item>No need. I already know what I want. I want the Elite Platinum.</item>
-                                                <item>Next</item>
+                                                <item>I need a mortage</item>
+                                                <item>* mortgage </item>
+                                                <item>* mortgages</item>
+                                                <item>mortgage</item>
+                                                <item>mortgages</item>
                                             </grammar>
                                             <output>
                                                 <prompt selectionType="RANDOM">
-                                                    <item>Oh, in that case…there’s some important information I need you to read about the charges, fees and pricing. It’s easier if I send it to your smartphone; please say ready when you're ready!</item>
+                                                    <item>Would you like to Make new mortgage or Prepay?</item>
+                                                </prompt>
+                                            </output>
+                                        </input>
+                                        <input>
+                                            <grammar>
+                                                <item>* credit card</item>
+                                                <item>* credit cards</item>
+                                                <item>credit card</item>
+                                                <item>credit cards</item>
+                                                <item>* CC</item>
+                                                <item>* cc plz</item>
+                                                <item>Next.</item>
+                                            </grammar>
+                                            <output>
+                                                <prompt selectionType="RANDOM">
+                                                    <item>Credit Card it is. Would you like to "make a new credit card", "cancel a credit card", "increase the limit" on your credit card? If you have lost your card, say "lost my credit card".</item>
                                                 </prompt>
                                                 <getUserInput>
                                                     <input>
                                                         <grammar>
-                                                            <item>That makes my life easier, sure.</item>
-                                                            <item>That is ok</item>
-                                                            <item>Ready</item>
-                                                            <item>* ready</item>
-                                                            <item>Next</item>
+                                                            <item>make a new credit card</item>
+                                                            <item>*make a new credit card</item>
+                                                            <item>* new </item>
+                                                            <item>new </item>
+                                                            <item>* new credit card</item>
+                                                            <item>credit card</item>
+                                                            <item>create</item>
+                                                            <item>create *</item>
+                                                            <item>give</item>
+                                                            <item>give *</item>
+                                                            <item>make</item>
+                                                            <item>make *</item>
                                                         </grammar>
                                                         <output>
                                                             <prompt selectionType="RANDOM">
-                                                                <item>Cool. If you have an iPhone I’ll need you to turn on AirDrop. If you have an Android I’ll need you to make sure NFC is enabled. Say turned on when you have enabled your NFC.</item>
+                                                                <item>Awesome, now let’s figure out which credit card is best for you. We have standard credit cards which don’t require a security deposit, a reward program credit card that allows you to earn incentives, and a frequent flier credit card which allows you to earn airline mile credits when you make a purchase. Would you like Elite Platinum or Blue Premium?
+                                                                </item>
                                                             </prompt>
                                                             <getUserInput>
                                                                 <input>
                                                                     <grammar>
-                                                                        <item>I turned it on</item>
-                                                                        <item>I’m ready</item>
-                                                                        <item>Next</item>
-                                                                        <item>turned on</item>
-                                                                        <item>* turned on</item>
+                                                                        <item>Actually I know what I want. I want the Blue Premium.</item>
+                                                                        <item>I want the Blue Premium</item>
+                                                                        <item>Blue Premium</item>
+                                                                        <item>* Blue Premium</item>
+                                                                        <item>No need. I already know what I want. I want the Blue Premium.</item>
                                                                     </grammar>
                                                                     <output>
                                                                         <prompt selectionType="RANDOM">
-                                                                            <item>Thanks. I’m sending you the file now. After you open the file, you need to read it and then confirm that you’ve reviewed everything by tapping on the big green button. I can wait for you while you do that. How does that sound?</item>
+                                                                            <item>Blue Premium is still under construction. Please come back later!</item>
+                                                                        </prompt>
+                                                                    </output>
+                                                                </input>
+                                                                <input>
+                                                                    <grammar>
+                                                                        <item>Actually I know what I want. I want the Elite Platinum.</item>
+                                                                        <item>I want the Elite Platinum</item>
+                                                                        <item>Elite Platinum</item>
+                                                                        <item>No need. I already know what I want. I want the Elite Platinum.</item>
+                                                                        <item>Next</item>
+                                                                    </grammar>
+                                                                    <output>
+                                                                        <prompt selectionType="RANDOM">
+                                                                            <item>Oh, in that case…there’s some important information I need you to read about the charges, fees and pricing. It’s easier if I send it to your smartphone; please say "ready" when you're ready!</item>
                                                                         </prompt>
                                                                         <getUserInput>
                                                                             <input>
                                                                                 <grammar>
-                                                                                    <item>I got the file, reading it now</item>
-                                                                                    <item>Sounds good</item>
-                                                                                    <item>* Sounds good</item>
-                                                                                    <item>Yes</item>
-                                                                                    <item>* yes</item>
+                                                                                    <item>That makes my life easier, sure.</item>
+                                                                                    <item>That is ok</item>
+                                                                                    <item>Ready</item>
+                                                                                    <item>* ready</item>
                                                                                     <item>Next</item>
                                                                                 </grammar>
                                                                                 <output>
                                                                                     <prompt selectionType="RANDOM">
-                                                                                        <item>I got the confirmation! Thanks! I will now pull up a link to help you with banking.</item>
+                                                                                        <item>Cool. If you have an iPhone I’ll need you to turn on AirDrop. If you have an Android I’ll need you to make sure NFC is enabled. Say "turned on" when you have enabled your NFC.</item>
                                                                                     </prompt>
+                                                                                    <getUserInput>
+                                                                                        <input>
+                                                                                            <grammar>
+                                                                                                <item>I turned it on</item>
+                                                                                                <item>I’m ready</item>
+                                                                                                <item>Next</item>
+                                                                                                <item>turned on</item>
+                                                                                                <item>* turned on</item>
+                                                                                            </grammar>
+                                                                                            <output>
+                                                                                                <prompt selectionType="RANDOM">
+                                                                                                    <item>Thanks. I’m sending you the file now. After you open the file, you need to read it and then confirm that you’ve reviewed everything by tapping on the big green button. I can wait for you while you do that. Say "sounds good" when you are done.</item>
+                                                                                                </prompt>
+                                                                                                <getUserInput>
+                                                                                                    <input>
+                                                                                                        <grammar>
+                                                                                                            <item>I got the file, reading it now</item>
+                                                                                                            <item>Sounds good</item>
+                                                                                                            <item>* Sounds good</item>
+                                                                                                            <item>Yes</item>
+                                                                                                            <item>* yes</item>
+                                                                                                            <item>Next</item>
+                                                                                                        </grammar>
+                                                                                                        <output>
+                                                                                                            <prompt selectionType="RANDOM">
+                                                                                                                <item>I got the confirmation! Thanks! I will now pull up a link to help you with banking.</item>
+                                                                                                            </prompt>
+                                                                                                        </output>
+                                                                                                    </input>
+                                                                                                    <input>
+                                                                                                        <grammar>
+                                                                                                            <item>No</item>
+                                                                                                            <item>* No</item>
+                                                                                                            <item>That doesn't sound good.</item>
+                                                                                                            <item>* doesn't sound good.</item>
+                                                                                                            <item>no good</item>
+                                                                                                            <item>* no good</item>
+                                                                                                            <item>bad</item>
+                                                                                                            <item>* bad</item>
+                                                                                                        </grammar>
+                                                                                                        <output>
+                                                                                                            <prompt selectionType="RANDOM">
+                                                                                                                <item>It should sound good! Open the file please.</item>
+                                                                                                            </prompt>
+                                                                                                        </output>
+                                                                                                    </input>
+                                                                                                    <default>
+                                                                                          						<output>
+                                                                                          							<prompt>
+                                                                                          								<item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                                          							</prompt>
+                                                                                                       <goto ref="output_commence"/>
+                                                                                          						</output>
+                                                                                          					</default>
+                                                                                                </getUserInput>
+                                                                                            </output>
+                                                                                        </input>
+                                                                                        <default>
+                                                                              						<output>
+                                                                              							<prompt>
+                                                                              								<item>I'm sorry, but I do not fully understand you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                              							</prompt>
+                                                                                           <goto ref="output_commence"/>
+                                                                              						</output>
+                                                                              					</default>
+                                                                                    </getUserInput>
                                                                                 </output>
-                                                                            </input>
-                                                                            <input>
-                                                                                <grammar>
-                                                                                    <item>No</item>
-                                                                                    <item>* No</item>
-                                                                                    <item>That doesn't sound good.</item>
-                                                                                    <item>* doesn't sound good.</item>
-                                                                                    <item>no good</item>
-                                                                                    <item>* no good</item>
-                                                                                    <item>bad</item>
-                                                                                    <item>* bad</item>
-                                                                                </grammar>
-                                                                                <output>
-                                                                                    <prompt selectionType="RANDOM">
-                                                                                        <item>It should sound good! Open the file please.</item>
-                                                                                    </prompt>
-                                                                                </output>
-                                                                            </input>
+                                                                           </input>
+                                                                           <default>
+                                                                 						<output>
+                                                                 							<prompt>
+                                                                 								<item>I'm sorry, but I do not fully understand you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                 							</prompt>
+                                                                              <goto ref="output_commence"/>
+                                                                 						</output>
+                                                                 					</default>
                                                                         </getUserInput>
                                                                     </output>
                                                                 </input>
+                                                                <default>
+                                                      						<output>
+                                                      							<prompt>
+                                                      								<item>I'm sorry, but I do not fully understand you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                      							</prompt>
+                                                                   <goto ref="output_commence"/>
+                                                      						</output>
+                                                      					</default>
                                                             </getUserInput>
                                                         </output>
-                                                   </input>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>cancel a credit card</item>
+                                                            <item>*cancel a credit card</item>
+                                                            <item>* cancel </item>
+                                                            <item>cancel </item>
+                                                            <item>* cancel card</item>
+                                                            <item>cancel card</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I will redirect you to a staff who can help you cancel a credit card. Give me a moment.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>increase the limit</item>
+                                                            <item>* increase the limit</item>
+                                                            <item>* increase </item>
+                                                            <item>increase </item>
+                                                            <item>* increase card</item>
+                                                            <item>increase card</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I will redirect you to a staff who can help you increase the transaction limit per month. Give me a moment.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>lost my credit card</item>
+                                                            <item>* lost my credit card</item>
+                                                            <item>* lost </item>
+                                                            <item>lost </item>
+                                                            <item>* lost card</item>
+                                                            <item>lost card</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I will redirect you to a staff who can help you remake a credit card for you. Please give me a moment.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <default>
+                                          						<output>
+                                          							<prompt>
+                                          								<item>I'm sorry, but I do not fully understand you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                          							</prompt>
+                                                       <goto ref="output_commence"/>
+                                          						</output>
+                                          					</default>
                                                 </getUserInput>
                                             </output>
                                         </input>
+                                        <default>
+                              						<output>
+                              							<prompt>
+                              								<item>I'm sorry, but I do not fully understand your question. Let me redirect you to someone who can better be of assistance to you.</item>
+                              							</prompt>
+                                           <goto ref="output_commence"/>
+                              						</output>
+                              					</default>
                                     </getUserInput>
                                 </output>
                             </input>
                             <input>
                                 <grammar>
-                                    <item>I need a debit card</item>
-                                    <item>* debit card</item>
-                                    <item>debit card</item>
-                                    <item>dc</item>
-                                    <item>* dc</item>
-                                    <item>* dc plz</item>
-                                    <item>Next.</item>
+                                    <item>accounts</item>
+                                    <item>* accounts</item>
+                                    <item>account</item>
+                                    <item>* account</item>
                                 </grammar>
                                 <output>
                                     <prompt selectionType="RANDOM">
-                                        <item>Awesome, now let’s figure out which debit card is best for you. We have standard credit cards which don’t require a security deposit, a reward program credit card that allows you to earn incentives, and a frequent flier credit card which allows you to earn airline mile credits when you make a purchase. Would you like the Elite Platinum or Blue Premium?</item>
+                                        <item>Account it is. I am very glad to hear that. Would you like to learn about "Chequing", "Saving", "RRSP", or "TFSA"?
+                                        </item>
                                     </prompt>
                                     <getUserInput>
                                         <input>
                                             <grammar>
-                                                <item>Actually I know what I want. I want the Blue Premium</item>
-                                                <item>I want the Blue Premium</item>
-                                                <item>Blue Premium</item>
-                                                <item>* Blue Premium</item>
-                                                <item>No need. I already know what I want. I want the Blue Premium.</item>
+                                                <item>I need a TFSA account</item>
+                                                <item>* TFSA</item>
+                                                <item>* TFSA cards</item>
+                                                <item>TFSA account</item>
+                                                <item>TFSA accounts</item>
+                                                <item>TFSA</item>
+                                                <item>* TFSA</item>
+                                                <item>TFSA *</item>
+                                                <item>TFSA *</item>
+                                                <item>* TFSA please</item>
                                             </grammar>
                                             <output>
                                                 <prompt selectionType="RANDOM">
-                                                    <item>Blue Preimum is still under construction. Please come back later!</item>
-                                                </prompt>
-                                            </output>
-                                        </input>
-                                        <input>
-                                            <grammar>
-                                                <item>Actually I know what I want. I want the Elite Platinum.</item>
-                                                <item>I want the Elite Platinum</item>
-                                                <item>Elite Platinum</item>
-                                                <item>* Elite Platinum</item>
-                                                <item>No need. I already know what I want. I want the Elite Platinum.</item>
-                                            </grammar>
-                                            <output>
-                                                <prompt selectionType="RANDOM">
-                                                    <item>Oh, in that case…there’s some important information I need you to read about the charges, fees and pricing. It’s easier if I send it to your smartphone. Say next when you're ready.</item>
+                                                    <item>Would you like to "open a new TFSA account", "remove a TFSA account", "transfer money", "change the plan", or "extend the number of transactions"? </item>
                                                 </prompt>
                                                 <getUserInput>
                                                     <input>
                                                         <grammar>
-                                                            <item>That makes my life easier, sure.</item>
-                                                            <item>That is ok</item>
-                                                            <item>Next</item>
-                                                            <item>* Next</item>
+                                                            <item>open a new TFSA account</item>
+                                                            <item>make a new TFSA account</item>
+                                                            <item>* open a new TFSA account</item>
+                                                            <item>* make a new TFSA account</item>
                                                         </grammar>
                                                         <output>
                                                             <prompt selectionType="RANDOM">
-                                                                <item>Cool. If you have an iPhone I’ll need you to turn on AirDrop. If you have an Android I’ll need you to make sure NFC is enabled. Let me know when you’re ready.</item>
+                                                                <item>I'll direct you to a department for opening a new TFSA account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>remove a TFSA account</item>
+                                                            <item>* remove a TFSA account</item>
+                                                            <item>cancel a TFSA account</item>
+                                                            <item>* cancel a TFSA account</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for removing a TFSA account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>transfer money</item>
+                                                            <item>* transfer money</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>How much amount would you like to transfer (TFSA)?</item>
                                                             </prompt>
                                                             <getUserInput>
                                                                 <input>
                                                                     <grammar>
-                                                                        <item>I turned it on</item>
-                                                                        <item>I’m ready</item>
-                                                                        <item>Next</item>
+                                                                        <item>*</item>
+                                                                        <item></item>
                                                                     </grammar>
                                                                     <output>
                                                                         <prompt selectionType="RANDOM">
-                                                                            <item>Thanks. I’m sending you the file now. After you open the file, you need to read it and then confirm that you’ve reviewed everything by tapping on the big green button. I can wait for you while you do that. How does that sound?</item>
+                                                                            <item>I'll direct you to a department for making transfers.</item>
+                                                                        </prompt>
+                                                                    </output>
+                                                                </input>
+                                                                <default>
+                                                                  <output>
+                                                                    <prompt>
+                                                                      <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                    </prompt>
+                                                                   <goto ref="output_commence"/>
+                                                                  </output>
+                                                                </default>
+                                                            </getUserInput>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>change the plan</item>
+                                                            <item>* change the plan</item>
+                                                            <item>* change a plan</item>
+                                                            <item>change a plan</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for making a changes to your TFSA account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                     <input>
+                                                        <grammar>
+                                                            <item>extend the number of transactions</item>
+                                                            <item>* extend the number of transactions</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>How much would you like to extend it by?</item>
+                                                            </prompt>
+                                                            <getUserInput>
+                                                                <input>
+                                                                    <grammar>
+                                                                        <item>*</item>
+                                                                        <item></item>
+                                                                    </grammar>
+                                                                    <output>
+                                                                        <prompt selectionType="RANDOM">
+                                                                            <item>I'll direct you to a department for extensions.</item>
+                                                                        </prompt>
+                                                                    </output>
+                                                                </input>
+                                                                <default>
+                                                                  <output>
+                                                                    <prompt>
+                                                                      <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                    </prompt>
+                                                                   <goto ref="output_commence"/>
+                                                                  </output>
+                                                                </default>
+                                                            </getUserInput>
+                                                        </output>
+                                                    </input>
+                                                    <default>
+                                                      <output>
+                                                        <prompt>
+                                                          <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                        </prompt>
+                                                       <goto ref="output_commence"/>
+                                                      </output>
+                                                    </default>
+                                                </getUserInput>
+                                            </output>
+                                        </input>
+                                        <input>
+                                            <grammar>
+                                                <item>I need a RRSP</item>
+                                                <item>RRSP account</item>
+                                                <item>RRSP accounts</item>
+                                                <item>* RRSP</item>
+                                                <item>RRSP</item>
+                                                <item>RRSP *</item>
+                                                <item>* RRSP please</item>
+                                            </grammar>
+                                            <output>
+                                                <prompt selectionType="RANDOM">
+                                                    <item>Would you like to "make a new RRSP account", "remove an RRSP account", "transfer money" or "change the RRSP plan"? </item>
+                                                </prompt>
+                                                <getUserInput>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>open a new RRSP account</item>
+                                                            <item>make a new RRSP account</item>
+                                                            <item>* open a new RRSP account</item>
+                                                            <item>* make a new RRSP account</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for opening a new RRSP account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>remove a RRSP account</item>
+                                                            <item>* remove a RRSP account</item>
+                                                            <item>cancel a RRSP account</item>
+                                                            <item>* cancel a RRSP account</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for removing a RRSP account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>transfer money</item>
+                                                            <item>* transfer money</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>How much amount would you like to transfer (RRSP)?</item>
+                                                            </prompt>
+                                                            <getUserInput>
+                                                                <input>
+                                                                    <grammar>
+                                                                        <item>*</item>
+                                                                        <item></item>
+                                                                    </grammar>
+                                                                    <output>
+                                                                        <prompt selectionType="RANDOM">
+                                                                            <item>I'll direct you to a department for making transfers.</item>
+                                                                        </prompt>
+                                                                    </output>
+                                                                </input>
+                                                                <default>
+                                                                  <output>
+                                                                    <prompt>
+                                                                      <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                    </prompt>
+                                                                   <goto ref="output_commence"/>
+                                                                  </output>
+                                                                </default>
+                                                            </getUserInput>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>change the plan</item>
+                                                            <item>* change the plan</item>
+                                                            <item>* change a plan</item>
+                                                            <item>change a plan</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for making a changes to your RRSP account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                     <input>
+                                                        <grammar>
+                                                            <item>extend the number of transactions</item>
+                                                            <item>* extend the number of transactions</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>How much would you like to extend it by?</item>
+                                                            </prompt>
+                                                            <getUserInput>
+                                                                <input>
+                                                                    <grammar>
+                                                                        <item>*</item>
+                                                                        <item></item>
+                                                                    </grammar>
+                                                                    <output>
+                                                                        <prompt selectionType="RANDOM">
+                                                                            <item>I'll direct you to a department for extensions.</item>
+                                                                        </prompt>
+                                                                    </output>
+                                                                </input>
+                                                                <default>
+                                                                  <output>
+                                                                    <prompt>
+                                                                      <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                    </prompt>
+                                                                   <goto ref="output_commence"/>
+                                                                  </output>
+                                                                </default>
+                                                            </getUserInput>
+                                                        </output>
+                                                    </input>
+                                                    <default>
+                                                      <output>
+                                                        <prompt>
+                                                          <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                        </prompt>
+                                                       <goto ref="output_commence"/>
+                                                      </output>
+                                                    </default>
+                                                </getUserInput>
+                                            </output>
+                                        </input>
+                                        <input>
+                                            <grammar>
+                                                <item>I need a savings account</item>
+                                                <item>saving account</item>
+                                                <item>savings accounts</item>
+                                                <item>* saving</item>
+                                                <item>* savings</item>
+                                                <item>savings</item>
+                                                <item>saving</item>
+                                                <item>saving *</item>
+                                                <item>savings *</item>
+                                                <item>* saving please</item>
+                                            </grammar>
+                                            <output>
+                                                <prompt selectionType="RANDOM">
+                                                    <item>Would you like to "make a new savings account", "remove an savings account", "transfer money" or "change the savings plan"? </item>
+                                                </prompt>
+                                                <getUserInput>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>open a new savings account</item>
+                                                            <item>make a new savings account</item>
+                                                            <item>* open a new savings account</item>
+                                                            <item>* make a new savings account</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for opening a new savings account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>remove a savings account</item>
+                                                            <item>* remove a savings account</item>
+                                                            <item>cancel a savings account</item>
+                                                            <item>* cancel a savings account</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for removing a savings account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>transfer money</item>
+                                                            <item>* transfer money</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>How much amount would you like to transfer (savings)?</item>
+                                                            </prompt>
+                                                            <getUserInput>
+                                                                <input>
+                                                                    <grammar>
+                                                                        <item>*</item>
+                                                                        <item></item>
+                                                                    </grammar>
+                                                                    <output>
+                                                                        <prompt selectionType="RANDOM">
+                                                                            <item>I'll direct you to a department for making transfers.</item>
+                                                                        </prompt>
+                                                                    </output>
+                                                                </input>
+                                                                <default>
+                                                                  <output>
+                                                                    <prompt>
+                                                                      <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                    </prompt>
+                                                                   <goto ref="output_commence"/>
+                                                                  </output>
+                                                                </default>
+                                                            </getUserInput>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>change the plan</item>
+                                                            <item>* change the plan</item>
+                                                            <item>* change a plan</item>
+                                                            <item>change a plan</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for making a changes to your savings account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                     <input>
+                                                        <grammar>
+                                                            <item>extend the number of transactions</item>
+                                                            <item>* extend the number of transactions</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>How much would you like to extend it by?</item>
+                                                            </prompt>
+                                                            <getUserInput>
+                                                                <input>
+                                                                    <grammar>
+                                                                        <item>*</item>
+                                                                        <item></item>
+                                                                    </grammar>
+                                                                    <output>
+                                                                        <prompt selectionType="RANDOM">
+                                                                            <item>I'll direct you to a department for extensions.</item>
+                                                                        </prompt>
+                                                                    </output>
+                                                                </input>
+                                                                <default>
+                                                                  <output>
+                                                                    <prompt>
+                                                                      <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                    </prompt>
+                                                                   <goto ref="output_commence"/>
+                                                                  </output>
+                                                                </default>
+                                                            </getUserInput>
+                                                        </output>
+                                                    </input>
+                                                    <default>
+                                                      <output>
+                                                        <prompt>
+                                                          <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                        </prompt>
+                                                       <goto ref="output_commence"/>
+                                                      </output>
+                                                    </default>
+                                                </getUserInput>
+                                            </output>
+                                        </input>
+                                        <input>
+                                            <grammar>
+                                                <item>* chequing card</item>
+                                                <item>* chequing cards</item>
+                                                <item>chequing card</item>
+                                                <item>chequing cards</item>
+                                                <item>chequing</item>
+                                                <item>* chequing</item>
+                                                <item>chequing *</item>
+                                                <item>chequing card *</item>
+                                                <item>* chequing plz</item>
+                                            </grammar>
+                                            <output>
+                                                <prompt selectionType="RANDOM">
+                                                    <item>Would you like to "make a new chequing account", "remove a chequing account", "transfer money", "change the plan", or "extend the number of transactions"? </item>
+                                                </prompt>
+                                                <getUserInput>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>remove a chequing account</item>
+                                                            <item>* remove a chequing account</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for removing a chequing account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>transfer money</item>
+                                                            <item>* transfer money</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for making transfers.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>change the plan</item>
+                                                            <item>* change the plan</item>
+                                                            <item>* change a plan</item>
+                                                            <item>change a plan</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>I'll direct you to a department for making a changes to chequing account.</item>
+                                                            </prompt>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>extend the number of transactions</item>
+                                                            <item>* extend the number of transactions</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>How much would you like to extend it by?</item>
+                                                            </prompt>
+                                                            <getUserInput>
+                                                                <input>
+                                                                    <grammar>
+                                                                        <item>*</item>
+                                                                        <item></item>
+                                                                    </grammar>
+                                                                    <output>
+                                                                        <prompt selectionType="RANDOM">
+                                                                            <item>Will do! Let me direct you to the right department.</item>
+                                                                        </prompt>
+                                                                    </output>
+                                                                </input>
+                                                                <default>
+                                                                  <output>
+                                                                    <prompt>
+                                                                      <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                    </prompt>
+                                                                   <goto ref="output_commence"/>
+                                                                  </output>
+                                                                </default>
+                                                            </getUserInput>
+                                                        </output>
+                                                    </input>
+                                                    <input>
+                                                        <grammar>
+                                                            <item>make a new chequing account</item>
+                                                            <item>* make a new chequing account</item>
+                                                        </grammar>
+                                                        <output>
+                                                            <prompt selectionType="RANDOM">
+                                                                <item>Awesome, now let’s figure out which debit card is best for you. We have standard debit cards which don’t require a security deposit, a reward program debit card that allows you to earn incentives, and a frequent flier debit card which allows you to earn airline miles when you make a purchase. Would you like the Elite Platinum or Blue Premium?</item>
+                                                            </prompt>
+                                                            <getUserInput>
+                                                                <input>
+                                                                    <grammar>
+                                                                        <item>Actually I know what I want. I want the Blue Premium</item>
+                                                                        <item>I want the Blue Premium</item>
+                                                                        <item>Blue Premium</item>
+                                                                        <item>* Blue Premium</item>
+                                                                        <item>No need. I already know what I want. I want the Blue Premium.</item>
+                                                                    </grammar>
+                                                                    <output>
+                                                                        <prompt selectionType="RANDOM">
+                                                                            <item>Blue Preimum is still under construction. Please come back later!</item>
+                                                                        </prompt>
+                                                                    </output>
+                                                                </input>
+                                                                <input>
+                                                                    <grammar>
+                                                                        <item>Actually I know what I want. I want the Elite Platinum.</item>
+                                                                        <item>I want the Elite Platinum</item>
+                                                                        <item>Elite Platinum</item>
+                                                                        <item>* Elite Platinum</item>
+                                                                        <item>No need. I already know what I want. I want the Elite Platinum.</item>
+                                                                    </grammar>
+                                                                    <output>
+                                                                        <prompt selectionType="RANDOM">
+                                                                            <item>Oh, in that case…there’s some important information I need you to read about the charges, fees and pricing. It’s easier if I send it to your smartphone. Say "next" when you're ready.</item>
                                                                         </prompt>
                                                                         <getUserInput>
                                                                             <input>
                                                                                 <grammar>
-                                                                                    <item>I got the file, reading it now</item>
-                                                                                    <item>Sounds good</item>
+                                                                                    <item>That makes my life easier, sure.</item>
+                                                                                    <item>That is ok</item>
                                                                                     <item>Next</item>
+                                                                                    <item>* Next</item>
                                                                                 </grammar>
                                                                                 <output>
                                                                                     <prompt selectionType="RANDOM">
-                                                                                        <item>I got the confirmation! Thanks! I will now pull up a link to help you with banking.</item>
+                                                                                        <item>Cool. If you have an iPhone I’ll need you to turn on AirDrop. If you have an Android I’ll need you to make sure NFC is enabled. Say "turned on" when you have enabled it.</item>
                                                                                     </prompt>
+                                                                                    <getUserInput>
+                                                                                        <input>
+                                                                                            <grammar>
+                                                                                                <item>I turned it on</item>
+                                                                                                <item>Turned on</item>
+                                                                                                <item>I’m ready</item>
+                                                                                                <item>Next</item>
+                                                                                                <item>ready</item>
+                                                                                            </grammar>
+                                                                                            <output>
+                                                                                                <prompt selectionType="RANDOM">
+                                                                                                    <item>Thanks. I’m sending you the file now. After you open the file, you need to read it and then confirm that you’ve reviewed everything by tapping on the big green button. I can wait for you while you do that. Say "Reviewed" when you have.</item>
+                                                                                                </prompt>
+                                                                                                <getUserInput>
+                                                                                                    <input>
+                                                                                                        <grammar>
+                                                                                                            <item>I got the file, reading it now</item>
+                                                                                                            <item>Sounds good</item>
+                                                                                                            <item>Next</item>
+                                                                                                            <item>Reviewed</item>
+                                                                                                        </grammar>
+                                                                                                        <output>
+                                                                                                            <prompt selectionType="RANDOM">
+                                                                                                                <item>I got the confirmation! Thanks! I will now pull up a link to help you with banking.</item>
+                                                                                                            </prompt>
+                                                                                                        </output>
+                                                                                                    </input>
+                                                                                                    <input>
+                                                                                                        <grammar>
+                                                                                                            <item>No</item>
+                                                                                                            <item>That doesn't sound good.</item>
+                                                                                                            <item>Not Reviewed</item>
+                                                                                                        </grammar>
+                                                                                                        <output>
+                                                                                                            <prompt selectionType="RANDOM">
+                                                                                                                <item>It should sound good! Open the file please.</item>
+                                                                                                            </prompt>
+                                                                                                        </output>
+                                                                                                    </input>
+                                                                                                    <default>
+                                                                                          						<output>
+                                                                                          							<prompt>
+                                                                                          								<item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                                          							</prompt>
+                                                                                                       <goto ref="output_commence"/>
+                                                                                          						</output>
+                                                                                          					</default>
+                                                                                                </getUserInput>
+                                                                                            </output>
+                                                                                        </input>
+                                                                                        <default>
+                                                                                          <output>
+                                                                                            <prompt>
+                                                                                              <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                                            </prompt>
+                                                                                           <goto ref="output_commence"/>
+                                                                                          </output>
+                                                                                        </default>
+                                                                                    </getUserInput>
                                                                                 </output>
-                                                                            </input>
-                                                                            <input>
-                                                                                <grammar>
-                                                                                    <item>No</item>
-                                                                                    <item>That doesn't sound good.</item>
-                                                                                </grammar>
-                                                                                <output>
-                                                                                    <prompt selectionType="RANDOM">
-                                                                                        <item>It should sound good! Open the file please.</item>
-                                                                                    </prompt>
-                                                                                </output>
-                                                                            </input>
+                                                                           </input>
+                                                                           <default>
+                                                                             <output>
+                                                                               <prompt>
+                                                                                 <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                               </prompt>
+                                                                              <goto ref="output_commence"/>
+                                                                             </output>
+                                                                           </default>
                                                                         </getUserInput>
                                                                     </output>
                                                                 </input>
+                                                                <default>
+                                                                  <output>
+                                                                    <prompt>
+                                                                      <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                                    </prompt>
+                                                                   <goto ref="output_commence"/>
+                                                                  </output>
+                                                                </default>
                                                             </getUserInput>
                                                         </output>
-                                                   </input>
+                                                    </input>
+                                                    <default>
+                                                      <output>
+                                                        <prompt>
+                                                          <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                                        </prompt>
+                                                       <goto ref="output_commence"/>
+                                                      </output>
+                                                    </default>
                                                 </getUserInput>
                                             </output>
                                         </input>
+                                        <default>
+                                          <output>
+                                            <prompt>
+                                              <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                                            </prompt>
+                                           <goto ref="output_commence"/>
+                                          </output>
+                                        </default>
                                     </getUserInput>
                                 </output>
-                            </input>
+                             </input>
+                             <default>
+                   						<output>
+                   							<prompt>
+                   								<item>I'm sorry, but I do not fully understand your question. Let me redirect you to someone who can better be of assistance to you.</item>
+                   							</prompt>
+                                <goto ref="output_commence"/>
+                   						</output>
+                   					</default>
                         </getUserInput>
                     </output>
-                </input>               
-
-
-
-
+                </input>
                 <input>
                     <grammar>
                         <item>you are a liar</item>
@@ -749,7 +1463,7 @@
                         </prompt>
                     </output>
                 </input>
-                
+
                 <input>
                     <grammar>
                         <item>What do you do?</item>
@@ -763,7 +1477,7 @@
                         </prompt>
                     </output>
                 </input>
-                
+
                 <input>
                     <grammar>
                         <item>What is your name?</item>
@@ -771,6 +1485,10 @@
                         <item>* your name</item>
                         <item>What are you called?</item>
                         <item>Do you have a name?</item>
+                        <item>What are you?</item>
+                        <item>What are you</item>
+                        <item>Who are you?</item>
+                        <item>Who are you</item>
                     </grammar>
                     <output>
                         <prompt selectionType="RANDOM">
@@ -1296,9 +2014,9 @@
                         </prompt>
                     </output>
                 </input>
-                
 
-                <!-- IMAD FFS_CREDIT CARD -->  
+
+                <!-- IMAD FFS_CREDIT CARD -->
                 <input>
                     <grammar>
                         <item>good bye</item>
@@ -2037,7 +2755,15 @@
                             <item>I may be a machine, but I'm not an ATM</item>
                         </prompt>
                     </output>
-                </input>               
+                </input>
+                <default>
+                  <output>
+                    <prompt>
+                      <item>I'm sorry, but I do not fully understand what you mean. Let me redirect you to someone who can better be of assistance to you.</item>
+                    </prompt>
+                   <goto ref="output_commence"/>
+                  </output>
+                </default>
             </folder><!-- END FSS_CREDIT CARD -->
 
 
